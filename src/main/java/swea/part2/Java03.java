@@ -3,8 +3,8 @@ package swea.part2;
 import java.io.FileInputStream;
 import java.util.Scanner;
 
-//D2 파스칼의 삼각형
-public class Java02 {
+//D2 파리퇴치
+public class Java03 {
     public static void main(String[] args) throws Exception {
 		/*
 		   아래의 메소드 호출은 앞으로 표준 입력(키보드) 대신 input.txt 파일로부터 읽어오겠다는 의미의 코드입니다.
@@ -26,31 +26,33 @@ public class Java02 {
 		*/
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            int n = sc.nextInt(); //행의 수
-            int[][] com= new int[n+1][n+1];
+            int n = sc.nextInt(); //배열 크기(n*n)
+            int m = sc.nextInt(); //파리채 크기 -> m*m
 
-            com[0][0]=1;
-            for(int i=1;i<=n;i++){
-                //양 끝은 무조건 1
-                com[i][0] = 1;
-                com[i][i] = 1;
-
-                for(int j=1;j<=i-1;j++){
-                    //nCr(조합) => (n-1)C(r-1) + (n-1)C(r)
-                    com[i][j] = com[i-1][j-1]+com[i-1][j];
-                }
-            }
-
-            //출력
-            System.out.println("#"+test_case);
+            int[][] map = new int[n][n];    //이차원 배열 생성
+            //값 입력
             for(int i=0;i<n;i++){
-                for(int j=0;j<=i;j++){
-                    System.out.print(com[i][j]+" ");
+                for(int j=0;j<n;j++) {
+                    map[i][j] = sc.nextInt();
                 }
-                System.out.println();
             }
+            int max =0; //합 최대값 저장
+            //최대값 찾기
+            for(int i=0;i<n-(m-1);i++){
+                for(int j=0;j<n-(m-1);j++){
+                    int sum=0;
+                    for(int k=0;k<m;k++){
+                        for(int l=0;l<m;l++){
+                            sum+=map[i+k][j+l];
+                            if(sum>max){
+                                max=sum;
+                            }
+                        }
+                    }
+                }
+            }
+
+            System.out.printf("#%d %d\n",test_case,max);
         }
     }
-
-
 }

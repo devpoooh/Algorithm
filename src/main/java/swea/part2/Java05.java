@@ -3,8 +3,8 @@ package swea.part2;
 import java.io.FileInputStream;
 import java.util.Scanner;
 
-//D2 파스칼의 삼각형
-public class Java02 {
+//D2 지그재그 숫자
+public class Java05 {
     public static void main(String[] args) throws Exception {
 		/*
 		   아래의 메소드 호출은 앞으로 표준 입력(키보드) 대신 input.txt 파일로부터 읽어오겠다는 의미의 코드입니다.
@@ -26,31 +26,16 @@ public class Java02 {
 		*/
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            int n = sc.nextInt(); //행의 수
-            int[][] com= new int[n+1][n+1];
-
-            com[0][0]=1;
+            int n = sc.nextInt();
+            int sum=0;
             for(int i=1;i<=n;i++){
-                //양 끝은 무조건 1
-                com[i][0] = 1;
-                com[i][i] = 1;
-
-                for(int j=1;j<=i-1;j++){
-                    //nCr(조합) => (n-1)C(r-1) + (n-1)C(r)
-                    com[i][j] = com[i-1][j-1]+com[i-1][j];
+                if(i%2==0){
+                    sum-=i;
+                }else{
+                    sum+=i;
                 }
             }
-
-            //출력
-            System.out.println("#"+test_case);
-            for(int i=0;i<n;i++){
-                for(int j=0;j<=i;j++){
-                    System.out.print(com[i][j]+" ");
-                }
-                System.out.println();
-            }
+            System.out.printf("#%d %d\n",test_case,sum);
         }
     }
-
-
 }
