@@ -3,8 +3,8 @@ package swea.part2;
 import java.io.FileInputStream;
 import java.util.Scanner;
 
-//D2 초심사의 회문 검사
-public class Java04 {
+//D2 어디에 단어가 들어갈 수 있을까
+public class Java08 {
     public static void main(String[] args) throws Exception {
 		/*
 		   아래의 메소드 호출은 앞으로 표준 입력(키보드) 대신 input.txt 파일로부터 읽어오겠다는 의미의 코드입니다.
@@ -26,17 +26,7 @@ public class Java04 {
 		*/
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            String str = sc.next();
-            StringBuffer sb = new StringBuffer(str);
-            String s = sb.reverse().toString();
 
-            int ans=0;
-            //비교
-            if(str.equals(s)){
-                ans =1;
-            }
-            System.out.printf("#%d %d\n",test_case,ans);
         }
     }
 }
-

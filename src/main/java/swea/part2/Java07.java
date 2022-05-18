@@ -1,10 +1,11 @@
 package swea.part2;
 
 import java.io.FileInputStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
-//D2 초심사의 회문 검사
-public class Java04 {
+//D2 조교의 성적 매기기
+public class Java07 {
     public static void main(String[] args) throws Exception {
 		/*
 		   아래의 메소드 호출은 앞으로 표준 입력(키보드) 대신 input.txt 파일로부터 읽어오겠다는 의미의 코드입니다.
@@ -25,18 +26,33 @@ public class Java04 {
 		   여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 		*/
 
+        String[] hak = {"D0","C-","C0","C+","B-","B0","B+","A-","A0","A+"};
         for (int test_case = 1; test_case <= T; test_case++) {
-            String str = sc.next();
-            StringBuffer sb = new StringBuffer(str);
-            String s = sb.reverse().toString();
+            int n = sc.nextInt(); //학생수
+            double[] students = new double[n];
+            int k = sc.nextInt();// 학점을 알고싶은 학생의 번호
+            int y = n/10;
+            String grade = "";
+            for(int i=0;i<n;i++){
+                int mid = sc.nextInt(); //중간고사
+                int fin = sc.nextInt(); //기말고사
+                int assign = sc.nextInt(); //과제
 
-            int ans=0;
-            //비교
-            if(str.equals(s)){
-                ans =1;
+                double score = mid*0.35 + fin*0.45 + assign*0.2;
+                students[i] = score;
             }
-            System.out.printf("#%d %d\n",test_case,ans);
+            double target = students[k-1]; //학점을 알고싶은 학생의 총점
+            Arrays.sort(students);
+//            System.out.println(Arrays.toString(students));
+
+            //같은 점수인 사람 찾기
+            for(int i=0;i<n;i++) {
+                if(students[i]==target){
+                    grade = hak[i/y];
+                    break;
+                }
+            }
+            System.out.printf("#%d %s\n",test_case,grade);
         }
     }
 }
-

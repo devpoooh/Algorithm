@@ -1,10 +1,12 @@
 package swea.part2;
 
 import java.io.FileInputStream;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
-//D2 초심사의 회문 검사
-public class Java04 {
+//D2 수도쿠 검증
+public class Java11 {
     public static void main(String[] args) throws Exception {
 		/*
 		   아래의 메소드 호출은 앞으로 표준 입력(키보드) 대신 input.txt 파일로부터 읽어오겠다는 의미의 코드입니다.
@@ -26,17 +28,33 @@ public class Java04 {
 		*/
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            String str = sc.next();
-            StringBuffer sb = new StringBuffer(str);
-            String s = sb.reverse().toString();
-
-            int ans=0;
-            //비교
-            if(str.equals(s)){
-                ans =1;
+            int[][] map = new int[9][9];
+            //2차원 배열 생성 -> 9*9
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    map[i][j] = sc.nextInt();
+                }
             }
-            System.out.printf("#%d %d\n",test_case,ans);
+
+            int result=1; //결과
+
+            //가로 검증
+            for (int i = 0; i < 9; i++) {
+                int[] isCheck =  new int[10]; //1~9 숫자가 1개인지 체크
+                System.out.println("isCheck[0] = " + isCheck[0]);
+                for (int j = 0; j < 9; j++) {
+                    isCheck[map[i][j]]+=1;
+                }
+
+                for (int k = 0; k < 9; k++) {
+                    System.out.println("isCheck = " + isCheck[k]);
+                    if(isCheck[k]!=1){
+                        result=0;
+                        break;
+                    }
+                }
+            }
+            System.out.println("result = " + result);
         }
     }
 }
-

@@ -1,10 +1,12 @@
 package swea.part2;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
-//D2 초심사의 회문 검사
-public class Java04 {
+//D2 중간 평균값 구하기
+public class Java06 {
     public static void main(String[] args) throws Exception {
 		/*
 		   아래의 메소드 호출은 앞으로 표준 입력(키보드) 대신 input.txt 파일로부터 읽어오겠다는 의미의 코드입니다.
@@ -26,17 +28,19 @@ public class Java04 {
 		*/
 
         for (int test_case = 1; test_case <= T; test_case++) {
-            String str = sc.next();
-            StringBuffer sb = new StringBuffer(str);
-            String s = sb.reverse().toString();
-
-            int ans=0;
-            //비교
-            if(str.equals(s)){
-                ans =1;
+            ArrayList<Integer> list = new ArrayList<>();
+            int sum=0;
+            for(int i=0;i<10;i++){
+                int val = sc.nextInt();
+                list.add(val);
+                sum+=val;
             }
-            System.out.printf("#%d %d\n",test_case,ans);
+
+            int max = Collections.max(list);
+            int min = Collections.min(list);
+
+            double avg = ((sum-(max+min))/8.0);
+            System.out.printf("#%d %.0f\n",test_case,avg);
         }
     }
 }
-
